@@ -1,0 +1,5 @@
+vyatta-security-crypto (1.0) UNRELEASED; urgency=low
+
+  * Initial release.
+
+ -- Daniel Gollub <dgollub@att.com>  Mon, 20 Jul 2020 08:04:10 +0200

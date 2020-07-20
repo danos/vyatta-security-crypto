@@ -1,0 +1,12 @@
+Source: vyatta-security-crypto
+Section: admin
+Priority: optional
+Maintainer: Vyatta Package Maintainers <DL-vyatta-help@att.com>
+Build-Depends: debhelper (>=11~)
+Standards-Version: 4.1.4
+
+Package: vyatta-crypto-v1-yang
+Architecture: all
+Depends: ${misc:Depends}, ${yang:Depends}
+Description: vyatta-crypto-v1 module
+ The YANG module for vyatta-crypto-v1

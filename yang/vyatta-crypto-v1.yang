@@ -1,0 +1,230 @@
+module vyatta-crypto-v1 {
+	namespace "urn:vyatta.com:mgmt:vyatta-crypto:1";
+	prefix vyatta-crypto-v1;
+
+	organization "AT&T Inc.";
+	contact
+		"AT&T Inc.
+		 Postal: 208 S. Akard Street
+		 Dallas, TX 75202
+		 Web: www.att.com";
+
+	description
+		"Copyright (c) 2020 AT&T Intellectual Property
+		 All rights reserved.
+
+		 Redistribution and use in source and binary forms, with or without
+		 modification, are permitted provided that the following conditions
+		 are met:
+
+		 1. Redistributions of source code must retain the above copyright
+		    notice, this list of conditions and the following disclaimer.
+		 2. Redistributions in binary form must reproduce the above
+		    copyright notice, this list of conditions and the following
+		    disclaimer in the documentation and/or other materials provided
+		    with the distribution.
+		 3. Neither the name of the copyright holder nor the names of its
+		    contributors may be used to endorse or promote products derived
+		    from this software without specific prior written permission.
+
+		 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+		 'AS IS' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+		 LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+		 FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+		 COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+		 INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+		 BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+		 LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+		 CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+		 LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+		 ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+		 POSSIBILITY OF SUCH DAMAGE.
+
+		 SPDX-License-Identifier: BSD-3-Clause
+
+		 This module implements vyatta-crypto-v1.";
+
+	revision 2020-07-16 {
+		description "Initial revision.";
+	}
+
+	//
+	// Symmetric Ciphers
+	//
+
+	identity sym-cipher {
+		description "Base identity from which all symmetric ciphers are derived.";
+
+	}
+
+	identity sym-cipher-aead {
+		base sym-cipher;
+		description "Base identity from which all AEAD based symmetric ciphers are derived.";
+	}
+
+	identity sym-cipher-aes-cbc {
+		base sym-cipher;
+		description "Base identity from which all AES CBC based symmetric ciphers are derived.";
+	}
+
+	identity sym-cipher-aes-gcm {
+		base sym-cipher-aead;
+		description "Base identity from which all AES GCM based symmetric ciphers are derived.";
+	}
+
+	identity des3-cbc {
+		base sym-cipher;
+		description "Triple DES symmetric-key algorithm";
+	}
+
+	identity aes-128-gcm-16 {
+		base sym-cipher-aes-gcm;
+		description "AES symmetric-key algorithm, 128 bit key-size, GCM block-cipher mode with
+			     16 bytes ICV length, AEAD algorithm.";
+	}
+
+	identity aes-256-gcm-16 {
+		base sym-cipher-aes-gcm;
+		description "AES symmetric-key algorithm, 256 bit key-size, GCM block-cipher mode with
+			     16 bytes ICV length, AEAD algorithm.";
+	}
+
+	identity aes-128-cbc {
+		base sym-cipher-aes-cbc;
+		description "AES symmetric-key algorithm, 128 bit key-size, CBC block-cipher mode.";
+	}
+
+	identity aes-256-cbc {
+		base sym-cipher-aes-cbc;
+		description "AES symmetric-key algorithm, 256 bit key-size, CBC block-cipher mode.";
+	}
+
+	//
+	// Key Exchange methods
+	//
+
+	identity key-exchange {
+		description "Base identity from which all key exchange methods are derived.";
+	}
+
+	identity key-exchange-ike {
+		base key-exchange;
+		description "Base identity from which all IKE/Oakley key exchange methods are derived.";
+	}
+
+	identity dh-modp-1024-group-2 {
+		base key-exchange-ike;
+		description "Diffie-Hellmann 1024-bit MODP Group (IANA number: 2)";
+	}
+
+	identity dh-modp-1536-group-5 {
+		base key-exchange-ike;
+		description "Diffie-Hellmann 1536-bit MODP Group (IANA number: 5)";
+	}
+
+	identity dh-modp-2048-group-14 {
+		base key-exchange-ike;
+		description "Diffie-Hellmann 2048-bit MODP Group (IANA number: 14)";
+	}
+
+	identity dh-modp-3072-group-15 {
+		base key-exchange-ike;
+		description "Diffie-Hellmann 3072-bit MODP Group (IANA number: 15)";
+	}
+
+	identity dh-modp-4096-group-16 {
+		base key-exchange-ike;
+		description "Diffie-Hellmann 4096-bit MODP Group (IANA number: 16)";
+	}
+
+	identity dh-modp-6144-group-17 {
+		base key-exchange-ike;
+		description "Diffie-Hellmann 6144-bit MODP Group (IANA number: 17)";
+	}
+
+	identity dh-modp-8192-group-18 {
+		base key-exchange-ike;
+		description "Diffie-Hellmann 8192-bit MODP Group (IANA number: 18)";
+	}
+
+	identity dh-recp-256-group-19 {
+		base key-exchange-ike;
+		description "Diffie-Hellmann 256-bit random ECP group (IANA number: 19)";
+	}
+
+	identity dh-recp-384-group-20 {
+		base key-exchange-ike;
+		description "Diffie-Hellmann 384-bit random ECP group (IANA number: 20)";
+	}
+
+	//
+	// Message Authentication Code (MAC)
+	//
+
+	identity mac {
+		description "Base identity from which all message authentication code functions are derived.";
+	}
+
+	identity hmac {
+		base mac;
+		description "Base identity from which all hash-based message authentication code functions are derived.";
+	}
+
+	identity hmac-md5-96 {
+		base hmac;
+		description "MD5 HMAC, truncated to 96 bits";
+	}
+
+	identity hmac-sha1-96 {
+		base hmac;
+		description "SHA1 HMAC, truncated to 96 bits";
+	}
+
+	identity hmac-sha2-256-128 {
+		base hmac;
+		description "SHA2, digest length 256 bits HMAC, truncated to 128 bits";
+	}
+
+	identity hmac-sha2-384-192 {
+		base hmac;
+		description "SHA2, digest length 384 bits HMAC, truncated to 192 bits";
+	}
+
+	identity hmac-sha2-512-256 {
+		base hmac;
+		description "SHA2, digest length 512 bits HMAC, truncated to 256 bits";
+	}
+
+	//
+	// Pseudo Random Function (PRF)
+	//
+
+	identity prf {
+		description "Base identity from which all pseudo random functions are derived.";
+	}
+
+	identity prf-hmac-md5 {
+		base prf;
+		description "PRF based on HMAC MD5";
+	}
+
+	identity prf-hmac-sha1 {
+		base prf;
+		description "PRF based on HMAC SHA1";
+	}
+
+	identity prf-hmac-sha2-256 {
+		base prf;
+		description "PRF based on HMAC SHA2, digest length 256 bits";
+	}
+
+	identity prf-hmac-sha2-384 {
+		base prf;
+		description "PRF based on HMAC SHA2, digest length 384 bits";
+	}
+
+	identity prf-hmac-sha2-512 {
+		base prf;
+		description "PRF based on HMAC SHA2, digest length 512 bits";
+	}
+}
