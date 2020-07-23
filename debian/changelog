@@ -1,5 +1,5 @@
-vyatta-security-crypto (1.0) UNRELEASED; urgency=low
+vyatta-security-crypto (1.0) unstable; urgency=medium
 
   * Initial release.
 
- -- Daniel Gollub <dgollub@att.com>  Mon, 20 Jul 2020 08:04:10 +0200
+ -- Daniel Gollub <dgollub@att.com>  Thu, 23 Jul 2020 14:53:28 +0200
